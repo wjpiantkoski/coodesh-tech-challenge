@@ -1,8 +1,8 @@
 import Transaction from "./transaction";
-import {v4 as uuid} from 'uuid'
 import InvalidPropertyError from "../@shared/errors/invalid-property.error";
 import RequiredPropertyError from "../@shared/errors/required-property.error";
 import ValidationError from "../@shared/errors/validation.error";
+import UniqueEntityId from "../@shared/value-object/unique-entity-id";
 
 describe('Transaction Entity', () => {
 
@@ -20,6 +20,7 @@ describe('Transaction Entity', () => {
             expect(transaction.product).toBe('Curso Online')
             expect(transaction.value).toBe(1000)
             expect(transaction.seller).toBe('Test Seller')
+            expect(transaction._id).toBeInstanceOf(UniqueEntityId)
         })
 
         it('should throw an error when product is empty', () => {
