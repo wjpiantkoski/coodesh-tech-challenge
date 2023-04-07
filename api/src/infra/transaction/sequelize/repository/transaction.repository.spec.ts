@@ -110,4 +110,30 @@ describe('TransactionRepository', () => {
         })
     })
 
+    it('should find many transactions', async () => {
+        const transactionOne = new Transaction({
+            date: new Date(),
+            product: 'Curso Online',
+            seller: 'Test Seller',
+            type: transactionType,
+            value: 100000
+        })
+
+        const transactionTwo = new Transaction({
+            date: new Date(),
+            product: 'Curso Online Avançado',
+            seller: 'Test Best Seller',
+            type: transactionType,
+            value: 100000
+        })
+
+        const transactions = [transactionOne, transactionTwo]
+        const transactionRepository = new TransactionRepository()
+
+        await transactionRepository.createMany(transactions)
+
+        const foundTransactions = await transactionRepository.findAll()
+
+        expect(foundTransactions).toEqual(transactions)
+    })
 });
