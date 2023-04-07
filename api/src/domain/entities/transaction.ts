@@ -1,6 +1,7 @@
 import InvalidPropertyError from "../@shared/errors/invalid-property.error";
 import RequiredPropertyError from "../@shared/errors/required-property.error";
 import ValidationError from "../@shared/errors/validation.error";
+import UniqueEntityId from "../@shared/value-object/unique-entity-id";
 
 export type TransactionType = {
     date: Date,
@@ -10,13 +11,14 @@ export type TransactionType = {
 }
 export default class Transaction {
 
-    private _id: string
+    public readonly _id: UniqueEntityId
     private _date: Date
     private _product: string
     private _value: number
     private _seller: string
 
-    constructor(props: TransactionType) {
+    constructor(props: TransactionType, id?: UniqueEntityId) {
+        this._id = id || new UniqueEntityId()
         this._date = props.date
         this._product = props.product
         this._value = props.value
