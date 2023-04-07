@@ -53,4 +53,20 @@ describe('TransactionTypeRepository', () => {
             description: transactionTypeTwo.description
         })
     })
+
+    it('should find a transaction type by id', async () => {
+        const transactionType = new TransactionType('1', TransactionNature.CashIn, 'Venda produtor')
+
+        await TransactionTypeModel.create({
+            id: transactionType._id,
+            nature: transactionType.nature,
+            description: transactionType.description
+        })
+
+        const transactionTypeRepository = new TransactionTypeRepository()
+
+        const foundTransactionType = await transactionTypeRepository.findById(transactionType._id)
+
+        expect(foundTransactionType).toEqual(transactionType)
+    })
 })

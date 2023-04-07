@@ -1,6 +1,6 @@
 import TransactionTypeRepositoryInterface
     from "../../../../domain/transaction/repositories/transaction-type-repository.interface";
-import TransactionType from "../../../../domain/transaction/entities/transaction-type";
+import TransactionType, {TransactionNature} from "../../../../domain/transaction/entities/transaction-type";
 import TransactionTypeModel from "../models/transaction-type.model";
 
 export default class TransactionTypeRepository implements TransactionTypeRepositoryInterface {
@@ -14,7 +14,16 @@ export default class TransactionTypeRepository implements TransactionTypeReposit
         }))
     }
 
-    findById(id: string): Promise<TransactionType> {
-        return Promise.resolve(undefined);
+    async findById(id: string): Promise<TransactionType> {
+        const transactionTypeModel = await TransactionTypeModel.findOne({ where: { id } })
+
+        const transactionNatureKey = Object.values(TransactionNature).indexOf(transactionTypeModel.nature)
+        const transactionNature = Object.keys(TransactionNature)[transactionNatureKey]
+
+        return new TransactionType(
+            transactionTypeModel.id,
+            TransactionNature[transactionNature],
+            transactionTypeModel.description
+        )
     }
 }
