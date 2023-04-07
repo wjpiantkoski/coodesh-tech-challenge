@@ -2,6 +2,7 @@ import {Sequelize} from "sequelize-typescript";
 import TransactionTypeModel from "../models/transaction-type.model";
 import TransactionType, {TransactionNature} from "../../../../domain/transaction/entities/transaction-type";
 import TransactionTypeRepository from "./transaction-type.repository";
+import NotFoundEntityError from "../../../@shared/errors/NotFoundEntity.error";
 
 describe('TransactionTypeRepository', () => {
 
@@ -68,5 +69,13 @@ describe('TransactionTypeRepository', () => {
         const foundTransactionType = await transactionTypeRepository.findById(transactionType._id)
 
         expect(foundTransactionType).toEqual(transactionType)
+    })
+
+    it('should throw error when transaction type is not found', async () => {
+        const transactionTypeRepository = new TransactionTypeRepository()
+
+        expect(async () => {
+            await transactionTypeRepository.findById('abc')
+        }).rejects.toThrow(NotFoundEntityError)
     })
 })
