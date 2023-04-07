@@ -1,6 +1,7 @@
-import {BelongsTo, Column, DataType, ForeignKey, Model, PrimaryKey} from "sequelize-typescript";
+import {BelongsTo, Column, ForeignKey, Model, PrimaryKey} from "sequelize-typescript";
+import TransactionTypeModel from "./transaction-type.model";
 
-export default class TransactionTypeModel extends Model {
+export default class TransactionModel extends Model {
 
     @PrimaryKey
     @Column
