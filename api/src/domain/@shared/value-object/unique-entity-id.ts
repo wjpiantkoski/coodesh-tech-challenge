@@ -1,4 +1,5 @@
 import {v4 as uuidv4, validate as uuidValidate} from 'uuid'
+import InvalidUuidError from "../errors/invalid-uuid.error";
 
 export default class UniqueEntityId {
 
@@ -9,7 +10,7 @@ export default class UniqueEntityId {
 
     private validate(): void {
         if (!uuidValidate(this.id)) {
-            throw new Error('Id is invalid')
+            throw new InvalidUuidError()
         }
     }
 }
