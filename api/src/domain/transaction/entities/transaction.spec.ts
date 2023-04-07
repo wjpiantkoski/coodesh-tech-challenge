@@ -3,14 +3,14 @@ import InvalidPropertyError from "../../@shared/errors/invalid-property.error";
 import RequiredPropertyError from "../../@shared/errors/required-property.error";
 import ValidationError from "../../@shared/errors/validation.error";
 import UniqueEntityId from "../../@shared/value-object/unique-entity-id";
-import TransactionType, {TransactionNature, TransactionTypeNumber} from "./transaction-type";
+import TransactionType, {TransactionNature} from "./transaction-type";
 
 describe('Transaction Entity', () => {
-    const transactionType = new TransactionType({
-        typeNumber: TransactionTypeNumber.TypeFour,
-        description: 'Comissão recebida',
-        nature: TransactionNature.CashIn
-    })
+    const transactionType = new TransactionType(
+        "1",
+        TransactionNature.CashIn,
+        "Description"
+    )
 
 
     describe('Constructor', () => {
