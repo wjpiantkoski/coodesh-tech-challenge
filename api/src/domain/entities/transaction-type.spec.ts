@@ -1,5 +1,7 @@
 import UniqueEntityId from "../@shared/value-object/unique-entity-id";
 import TransactionType, {TransactionNature, TransactionTypeNumber} from "./transaction-type";
+import RequiredPropertyError from "../@shared/errors/required-property.error";
+import InvalidPropertyError from "../@shared/errors/invalid-property.error";
 
 describe('TransactionType', () => {
 
@@ -18,8 +20,24 @@ describe('TransactionType', () => {
             expect(transactionType._id).toBeInstanceOf(UniqueEntityId)
         })
 
-        it('should throw error when typeNumber is invalid', () => {
+        it('should throw error when description is empty', () => {
+            expect(() => {
+                new TransactionType({
+                    typeNumber: TransactionTypeNumber.TypeOne,
+                    description: '',
+                    nature: TransactionNature.CashIn
+                })
+            }).toThrowError(RequiredPropertyError)
+        })
 
+        it('should throw error when description is invalid', () => {
+            expect(() => {
+                new TransactionType({
+                    typeNumber: TransactionTypeNumber.TypeOne,
+                    description: 'Extremely long description to test during this challenge',
+                    nature: TransactionNature.CashIn
+                })
+            }).toThrowError(InvalidPropertyError)
         })
 
     })
