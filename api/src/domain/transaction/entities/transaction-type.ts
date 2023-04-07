@@ -9,9 +9,9 @@ export default class TransactionType {
 
     public readonly _id: string
     private _description: string
-    private _nature: string
+    private _nature: TransactionNature
 
-    constructor(id: string, nature: string, description: string) {
+    constructor(id: string, nature: TransactionNature, description: string) {
         this._id = id
         this._nature = nature
         this._description = description
