@@ -5,7 +5,19 @@ import * as path from "path";
 
 describe('FileTransactionService', function () {
 
-    beforeAll(async () => {
+    beforeEach(async () => {
+        await fs.unlinkSync(path.join(__dirname, '/uploads/sales.txt'))
+    })
+
+    it('should create upload file folder', async () => {
+        const filepath = path.join(__dirname, '/uploads')
+        await FileTransactionService.createUploadFileFolder(filepath)
+
+        const folderExists = await fs.existsSync(filepath)
+        expect(folderExists).toBe(true)
+    })
+
+    it('should read uploaded file transactions', async () => {
         const fileContent = `
 12022-01-15T19:20:30-03:00CURSO DE BEM-ESTAR            0000012750JOSE CARLOS
 12021-12-03T11:46:02-03:00DOMINANDO INVESTIMENTOS       0000050000MARIA CANDIDA
@@ -34,10 +46,6 @@ describe('FileTransactionService', function () {
 
         const filepath = path.join(__dirname, '/uploads/sales.txt')
         await fs.writeFileSync(filepath, fileContent.trim(), { encoding: 'utf8' })
-    })
-
-    it('should read uploaded file transactions', async () => {
-        const filepath = path.join(__dirname, '/uploads/sales.txt')
 
         const {
             linesWithError,
@@ -47,5 +55,9 @@ describe('FileTransactionService', function () {
         expect(fileTransactions[0]).toBeInstanceOf(FileTransaction)
         expect(linesWithError[0]).toBe(21)
     })
+
+
+
+
 
 });
