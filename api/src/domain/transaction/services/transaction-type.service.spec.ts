@@ -1,7 +1,28 @@
 import TransactionType, {TransactionNature} from "../entities/transaction-type";
 import TransactionTypeModel from "../../../infra/transaction/sequelize/models/transaction-type.model";
+import TransactionTypeService from "./transaction-type.service";
+import {Sequelize} from "sequelize-typescript";
 
 describe('TransactionTypeService', () => {
+
+    let sequelize: Sequelize
+
+    beforeEach(async () => {
+        sequelize = new Sequelize({
+            dialect: 'sqlite',
+            storage: ":memory:",
+            logging: false,
+            sync: {force: true}
+        })
+
+        sequelize.addModels([TransactionTypeModel])
+
+        await sequelize.sync()
+    })
+
+    afterEach(async () => {
+        await sequelize.close()
+    })
 
     it('should populate transaction type', async () => {
         const transactionTypes = [
@@ -11,7 +32,7 @@ describe('TransactionTypeService', () => {
             new TransactionType('4', TransactionNature.CashIn, 'Comissão recebida'),
         ]
 
-        await TransactionTypeService.populateDatabase(transactionTypes)
+        await TransactionTypeService.populateTransactionTypes(transactionTypes)
 
         const foundTransactionTypes = await TransactionTypeModel.findAll()
 
