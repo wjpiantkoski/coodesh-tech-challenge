@@ -47,6 +47,12 @@ export default class Transaction {
         if (this._value <= 0) {
             throw new Error('Value must be greater than 0')
         }
+
+        if (!this._seller) {
+            throw new Error('Seller is required')
+        } else if (this._seller.length > 20) {
+            throw new Error('Seller is invalid')
+        }
     }
 
 }
