@@ -18,6 +18,17 @@ describe('Transaction Entity', () => {
             expect(transaction.seller).toBe('Test Seller')
         })
 
+        it('should throw an error when product is invalid', () => {
+            expect(() => {
+                new Transaction({
+                    date: new Date(),
+                    product: '',
+                    value: 1000,
+                    seller: 'Test Seller'
+                })
+            }).toThrowError('Product is required')
+        })
+
     });
 
 });
