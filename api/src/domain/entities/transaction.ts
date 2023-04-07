@@ -17,6 +17,8 @@ export default class Transaction {
         this._product = props.product
         this._value = props.value
         this._seller = props.seller
+
+        this.validate()
     }
 
     get date(): Date {
@@ -33,6 +35,12 @@ export default class Transaction {
 
     get seller(): string {
         return this._seller
+    }
+
+    private validate(): void {
+        if (!this._product) {
+            throw new Error('Product is required')
+        }
     }
 
 }
