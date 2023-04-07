@@ -4,6 +4,7 @@ import TransactionModel from "../models/transaction.model";
 import TransactionType, {TransactionNature} from "../../../../domain/transaction/entities/transaction-type";
 import TransactionTypeRepository from "./transaction-type.repository";
 import Transaction from "../../../../domain/transaction/entities/transaction";
+import TransactionRepository from "./transaction.repository";
 
 describe('TransactionRepository', () => {
 
@@ -52,7 +53,7 @@ describe('TransactionRepository', () => {
         })
 
         const transactions = [transactionOne, transactionTwo]
-        const transactionRepository = await TransactionRepository()
+        const transactionRepository = new TransactionRepository()
 
         await transactionRepository.createMany(transactions)
 
@@ -61,20 +62,32 @@ describe('TransactionRepository', () => {
             foundTransactionTwo
         ] = await Promise.all([
             TransactionModel.findOne({
-                where: { id: transactionOne._id },
-                include: ['type']
+                where: { id: transactionOne._id.id },
+                include: [
+                    {
+                        model: TransactionTypeModel,
+                        required: true
+                    }
+                ]
             }),
             TransactionModel.findOne({
-                where: { id: transactionTwo._id },
-                include: ['type']
+                where: { id: transactionTwo._id.id },
+                include: [
+                    {
+                        model: TransactionTypeModel,
+                        required: true
+                    }
+                ]
             }),
         ])
 
         expect(foundTransactionOne.toJSON()).toStrictEqual({
-            id: transactionOne._id,
+            id: transactionOne._id.id,
+            date: transactionOne.date,
             product: transactionOne.product,
             seller: transactionOne.seller,
             value: transactionOne.value,
+            type_id: transactionOne.type._id,
             type: {
                 id: transactionOne.type._id,
                 nature: transactionOne.type.nature,
@@ -83,10 +96,12 @@ describe('TransactionRepository', () => {
         })
 
         expect(foundTransactionTwo.toJSON()).toStrictEqual({
-            id: transactionTwo._id,
+            id: transactionTwo._id.id,
+            date: transactionTwo.date,
             product: transactionTwo.product,
             seller: transactionTwo.seller,
             value: transactionTwo.value,
+            type_id: transactionTwo.type._id,
             type: {
                 id: transactionTwo.type._id,
                 nature: transactionTwo.type.nature,
