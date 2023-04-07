@@ -1,4 +1,6 @@
 import UniqueEntityId from "../@shared/value-object/unique-entity-id";
+import RequiredPropertyError from "../@shared/errors/required-property.error";
+import InvalidPropertyError from "../@shared/errors/invalid-property.error";
 
 export enum TransactionTypeNumber {
     TypeOne = '1',
@@ -29,6 +31,8 @@ export default class TransactionType {
         this._typeNumber = props.typeNumber
         this._description = props.description
         this._nature = props.nature
+
+        this.validate()
     }
 
     get typeNumber(): string {
@@ -41,5 +45,13 @@ export default class TransactionType {
 
     get nature(): string {
         return this._nature
+    }
+
+    private validate(): void {
+        if (!this._description) {
+            throw new RequiredPropertyError('Description')
+        } else if (this._description.length > 50) {
+            throw new InvalidPropertyError('Description')
+        }
     }
 }
