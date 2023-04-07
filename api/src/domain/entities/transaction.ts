@@ -1,3 +1,7 @@
+import InvalidPropertyError from "../@shared/errors/invalid-property.error";
+import RequiredPropertyError from "../@shared/errors/required-property.error";
+import ValidationError from "../@shared/errors/validation.error";
+
 export type TransactionType = {
     date: Date,
     product: string,
@@ -39,19 +43,19 @@ export default class Transaction {
 
     private validate(): void {
         if (!this._product) {
-            throw new Error('Product is required')
+            throw new RequiredPropertyError('Product')
         } else if (this._product.length > 30) {
-            throw new Error('Product is invalid')
+            throw new InvalidPropertyError('Product')
         }
 
         if (this._value <= 0) {
-            throw new Error('Value must be greater than 0')
+            throw new ValidationError('Value must be greater than 0')
         }
 
         if (!this._seller) {
-            throw new Error('Seller is required')
+            throw new RequiredPropertyError('Seller')
         } else if (this._seller.length > 20) {
-            throw new Error('Seller is invalid')
+            throw new InvalidPropertyError('Seller')
         }
     }
 
