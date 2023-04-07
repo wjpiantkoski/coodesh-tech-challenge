@@ -41,4 +41,12 @@ export default class FileTransactionService {
         }
     }
 
+    static async removeFile(filePath: string): Promise<void> {
+        const folderExists = await fs.existsSync(filePath)
+
+        if (folderExists) {
+            await fs.unlinkSync(filePath)
+        }
+    }
+
 }
