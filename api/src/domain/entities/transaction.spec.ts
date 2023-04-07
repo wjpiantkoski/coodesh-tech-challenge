@@ -51,6 +51,28 @@ describe('Transaction Entity', () => {
             }).toThrowError('Value must be greater than 0')
         })
 
+        it('should throw an error when seller is empty', () => {
+            expect(() => {
+                new Transaction({
+                    date: new Date(),
+                    product: 'Curso Online',
+                    value: 10,
+                    seller: ''
+                })
+            }).toThrowError('Seller is required')
+        })
+
+        it('should throw an error when seller is invalid', () => {
+            expect(() => {
+                new Transaction({
+                    date: new Date(),
+                    product: 'Curso Online',
+                    value: 10,
+                    seller: 'Extremely long seller name to test'
+                })
+            }).toThrowError('Seller is invalid')
+        })
+
     });
 
 });
