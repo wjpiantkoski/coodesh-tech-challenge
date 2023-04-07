@@ -54,7 +54,13 @@ describe('FileTransactionService', function () {
     })
 
 
+    it('should remove file', async () => {
+        const filepath = path.join(__dirname, '/uploads/sales.txt')
+        await fs.writeFileSync(filepath, '', { encoding: 'utf8' })
 
+        await FileTransactionService.removeFile(filepath)
 
-
+        const fileExists = await fs.existsSync(filepath)
+        expect(fileExists).toBe(false)
+    })
 });
