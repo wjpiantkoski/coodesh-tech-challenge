@@ -3,7 +3,6 @@ import TransactionTypeModel from "../../../infra/transaction/sequelize/models/tr
 import TransactionModel from "../../../infra/transaction/sequelize/models/transaction.model";
 import TransactionTypeService from "./transaction-type.service";
 import Transaction from "../entities/transaction";
-import TransactionType, {TransactionNature} from "../entities/transaction-type";
 import TransactionService from "./transaction.service";
 import FileTransaction from "../../file/entities/file-transaction";
 
