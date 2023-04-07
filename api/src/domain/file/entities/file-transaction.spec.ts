@@ -1,3 +1,5 @@
+import FileTransaction from "./file-transaction";
+
 describe('FileTransaction', function () {
 
     it('should create file transaction with correct values', () => {
@@ -9,13 +11,11 @@ describe('FileTransaction', function () {
             'JOSE CARLOS'
         )
 
-        expect(fileTransaction).toStrictEqual({
-            id: '1',
-            date: '2022-01-15T19:20:30-03:00',
-            product: 'CURSO DE BEM-ESTAR            ',
-            value: '0000012750',
-            seller: 'JOSE CARLOS'
-        })
+        expect(fileTransaction.id).toBe('1')
+        expect(fileTransaction.value).toBe('0000012750')
+        expect(fileTransaction.seller).toBe('JOSE CARLOS')
+        expect(fileTransaction.date).toBe('2022-01-15T19:20:30-03:00')
+        expect(fileTransaction.product).toBe('CURSO DE BEM-ESTAR            ')
     })
 
 });
