@@ -40,6 +40,17 @@ describe('Transaction Entity', () => {
             }).toThrowError('Product is invalid')
         })
 
+        it('should throw an error when value is less than or equal zero', () => {
+            expect(() => {
+                new Transaction({
+                    date: new Date(),
+                    product: 'Curso Online',
+                    value: -10,
+                    seller: 'Test Seller'
+                })
+            }).toThrowError('Value must be greater than 0')
+        })
+
     });
 
 });
