@@ -2,12 +2,14 @@ import InvalidPropertyError from "../@shared/errors/invalid-property.error";
 import RequiredPropertyError from "../@shared/errors/required-property.error";
 import ValidationError from "../@shared/errors/validation.error";
 import UniqueEntityId from "../@shared/value-object/unique-entity-id";
+import TransactionType from "./transaction-type";
 
-export type TransactionType = {
+export type TransactionProps = {
     date: Date,
     product: string,
     value: number,
     seller: string
+    type: TransactionType
 }
 export default class Transaction {
 
@@ -16,13 +18,15 @@ export default class Transaction {
     private _product: string
     private _value: number
     private _seller: string
+    private _type: TransactionType
 
-    constructor(props: TransactionType, id?: UniqueEntityId) {
+    constructor(props: TransactionProps, id?: UniqueEntityId) {
         this._id = id || new UniqueEntityId()
         this._date = props.date
         this._product = props.product
         this._value = props.value
         this._seller = props.seller
+        this._type = props.type
 
         this.validate()
     }
@@ -41,6 +45,10 @@ export default class Transaction {
 
     get seller(): string {
         return this._seller
+    }
+
+    get type(): TransactionType {
+        return this._type
     }
 
     private validate(): void {

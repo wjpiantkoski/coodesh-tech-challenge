@@ -3,8 +3,15 @@ import InvalidPropertyError from "../@shared/errors/invalid-property.error";
 import RequiredPropertyError from "../@shared/errors/required-property.error";
 import ValidationError from "../@shared/errors/validation.error";
 import UniqueEntityId from "../@shared/value-object/unique-entity-id";
+import TransactionType, {TransactionNature, TransactionTypeNumber} from "./transaction-type";
 
 describe('Transaction Entity', () => {
+    const transactionType = new TransactionType({
+        typeNumber: TransactionTypeNumber.TypeFour,
+        description: 'Comissão recebida',
+        nature: TransactionNature.CashIn
+    })
+
 
     describe('Constructor', () => {
 
@@ -13,7 +20,8 @@ describe('Transaction Entity', () => {
                 date: new Date(),
                 product: 'Curso Online',
                 value: 1000,
-                seller: 'Test Seller'
+                seller: 'Test Seller',
+                type: transactionType
             })
 
             expect(transaction.date).toBeInstanceOf(Date)
@@ -21,6 +29,7 @@ describe('Transaction Entity', () => {
             expect(transaction.value).toBe(1000)
             expect(transaction.seller).toBe('Test Seller')
             expect(transaction._id).toBeInstanceOf(UniqueEntityId)
+            expect(transaction.type).toBeInstanceOf(TransactionType)
         })
 
         it('should throw an error when product is empty', () => {
@@ -29,7 +38,8 @@ describe('Transaction Entity', () => {
                     date: new Date(),
                     product: '',
                     value: 1000,
-                    seller: 'Test Seller'
+                    seller: 'Test Seller',
+                    type: transactionType
                 })
             }).toThrowError(RequiredPropertyError)
         })
@@ -40,7 +50,8 @@ describe('Transaction Entity', () => {
                     date: new Date(),
                     product: 'Extremely long product name to test',
                     value: 1000,
-                    seller: 'Test Seller'
+                    seller: 'Test Seller',
+                    type: transactionType
                 })
             }).toThrowError(InvalidPropertyError)
         })
@@ -51,7 +62,8 @@ describe('Transaction Entity', () => {
                     date: new Date(),
                     product: 'Curso Online',
                     value: -10,
-                    seller: 'Test Seller'
+                    seller: 'Test Seller',
+                    type: transactionType
                 })
             }).toThrowError(ValidationError)
         })
@@ -62,7 +74,8 @@ describe('Transaction Entity', () => {
                     date: new Date(),
                     product: 'Curso Online',
                     value: 10,
-                    seller: ''
+                    seller: '',
+                    type: transactionType
                 })
             }).toThrowError(RequiredPropertyError)
         })
@@ -73,7 +86,8 @@ describe('Transaction Entity', () => {
                     date: new Date(),
                     product: 'Curso Online',
                     value: 10,
-                    seller: 'Extremely long seller name to test'
+                    seller: 'Extremely long seller name to test',
+                    type: transactionType
                 })
             }).toThrowError(InvalidPropertyError)
         })
