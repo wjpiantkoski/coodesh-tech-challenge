@@ -18,7 +18,7 @@ describe('Transaction Entity', () => {
             expect(transaction.seller).toBe('Test Seller')
         })
 
-        it('should throw an error when product is invalid', () => {
+        it('should throw an error when product is empty', () => {
             expect(() => {
                 new Transaction({
                     date: new Date(),
@@ -27,6 +27,17 @@ describe('Transaction Entity', () => {
                     seller: 'Test Seller'
                 })
             }).toThrowError('Product is required')
+        })
+
+        it('should throw an error when product is invalid', () => {
+            expect(() => {
+                new Transaction({
+                    date: new Date(),
+                    product: 'Extremely long product name to test',
+                    value: 1000,
+                    seller: 'Test Seller'
+                })
+            }).toThrowError('Product is invalid')
         })
 
     });
