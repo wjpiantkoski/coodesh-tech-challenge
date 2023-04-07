@@ -1,4 +1,4 @@
-import {Express, Request, Response, Router} from 'express'
+import {Request, Response, Router} from 'express'
 import multer from 'multer'
 import {NODE_PATH} from "../../../../env";
 import ReadFileTransactionsUseCase from "../../../../application/read-file-transactions.use-case";
@@ -20,7 +20,7 @@ export default class FilesRouter {
             this.upload.array('files'),
             async (req: Request, res: Response) => {
                 const readFileTransactions = new ReadFileTransactionsUseCase(new TransactionRepository())
-                const filepath = path.join(NODE_PATH, req.files[0].path)
+                const filepath = path.join(NODE_PATH, req.files[0].filename)
 
                 await readFileTransactions.execute(filepath)
 
