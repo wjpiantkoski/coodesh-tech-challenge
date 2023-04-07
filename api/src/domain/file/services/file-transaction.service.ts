@@ -3,6 +3,14 @@ import * as fs from "fs";
 
 export default class FileTransactionService {
 
+    static async createUploadFileFolder(filePath: string): Promise<void> {
+        const folderExists = await fs.existsSync(filePath)
+
+        if (!folderExists) {
+            await fs.mkdirSync(filePath)
+        }
+    }
+
     static async readFileTransactions(filePath: string): Promise<any> {
         const file = await fs.readFileSync(filePath, { encoding: 'utf8' })
         const fileLines = file.split('\n')

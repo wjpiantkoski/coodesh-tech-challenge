@@ -4,11 +4,6 @@ import * as fs from "fs";
 import * as path from "path";
 
 describe('FileTransactionService', function () {
-
-    beforeEach(async () => {
-        await fs.unlinkSync(path.join(__dirname, '/uploads/sales.txt'))
-    })
-
     it('should create upload file folder', async () => {
         const filepath = path.join(__dirname, '/uploads')
         await FileTransactionService.createUploadFileFolder(filepath)
@@ -54,6 +49,8 @@ describe('FileTransactionService', function () {
 
         expect(fileTransactions[0]).toBeInstanceOf(FileTransaction)
         expect(linesWithError[0]).toBe(21)
+
+        await fs.unlinkSync(path.join(__dirname, '/uploads/sales.txt'))
     })
 
 
