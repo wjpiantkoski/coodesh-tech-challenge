@@ -2,7 +2,7 @@ import {Column, DataType, Model, PrimaryKey, Table} from "sequelize-typescript";
 
 @Table({
     tableName: 'transaction-types',
-    timestamps: true
+    timestamps: false
 })
 export default class TransactionTypeModel extends Model {
 
