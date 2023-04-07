@@ -1,9 +1,21 @@
 import UniqueEntityId from "../@shared/value-object/unique-entity-id";
 
+export enum TransactionTypeNumber {
+    TypeOne = '1',
+    TypeTwo = '2',
+    TypeThree = '3',
+    TypeFour = '4'
+}
+
+export enum TransactionNature {
+    CashIn = 'cash-in',
+    CashOut = 'cash-out'
+}
+
 export type TransactionProps = {
-    typeNumber: string,
+    typeNumber: TransactionTypeNumber,
     description: string,
-    nature: string
+    nature: TransactionNature
 }
 export default class TransactionType {
 

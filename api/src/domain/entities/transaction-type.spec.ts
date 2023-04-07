@@ -1,5 +1,5 @@
 import UniqueEntityId from "../@shared/value-object/unique-entity-id";
-import TransactionType from "./transaction-type";
+import TransactionType, {TransactionNature, TransactionTypeNumber} from "./transaction-type";
 
 describe('TransactionType', () => {
 
@@ -7,15 +7,19 @@ describe('TransactionType', () => {
 
         it('should create transaction type with correct values', () => {
             const transactionType = new TransactionType({
-                typeNumber: '1',
+                typeNumber: TransactionTypeNumber.TypeOne,
                 description: 'Venda produtor',
-                nature: 'cash-in'
+                nature: TransactionNature.CashIn
             })
 
             expect(transactionType.typeNumber).toBe('1')
             expect(transactionType.description).toBe('Venda produtor')
             expect(transactionType.nature).toBe('cash-in')
             expect(transactionType._id).toBeInstanceOf(UniqueEntityId)
+        })
+
+        it('should throw error when typeNumber is invalid', () => {
+
         })
 
     })
