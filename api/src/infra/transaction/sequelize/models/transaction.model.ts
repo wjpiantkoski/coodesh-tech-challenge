@@ -1,6 +1,10 @@
-import {Column, ForeignKey, HasOne, Model, PrimaryKey} from "sequelize-typescript";
+import {BelongsTo, Column, ForeignKey, HasOne, Model, PrimaryKey, Table} from "sequelize-typescript";
 import TransactionTypeModel from "./transaction-type.model";
 
+@Table({
+    tableName: 'transactions',
+    timestamps: false
+})
 export default class TransactionModel extends Model {
 
     @PrimaryKey
@@ -11,7 +15,7 @@ export default class TransactionModel extends Model {
     @Column({allowNull: false})
     declare type_id: string
 
-    @HasOne(() => TransactionTypeModel)
+    @BelongsTo(() => TransactionTypeModel)
     declare type: TransactionTypeModel
 
     @Column({allowNull: false})

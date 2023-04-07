@@ -1,5 +1,9 @@
-import {Column, DataType, Model, PrimaryKey} from "sequelize-typescript";
+import {Column, DataType, Model, PrimaryKey, Table} from "sequelize-typescript";
 
+@Table({
+    tableName: 'transaction-types',
+    timestamps: false
+})
 export default class TransactionTypeModel extends Model {
 
     @PrimaryKey

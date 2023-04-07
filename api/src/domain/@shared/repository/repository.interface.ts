@@ -1,5 +1,5 @@
 export default interface RepositoryInterface<T> {
 
-    createMany(entity: T): Promise<void>
+    createMany(entities: T[]): Promise<void>
 
 }

@@ -2,8 +2,8 @@ import RequiredPropertyError from "../../@shared/errors/required-property.error"
 import InvalidPropertyError from "../../@shared/errors/invalid-property.error";
 
 export enum TransactionNature {
-    CashIn = 'cash-in',
-    CashOut = 'cash-out'
+    CashIn = 'cash-in' as any,
+    CashOut = 'cash-out' as any
 }
 export default class TransactionType {
 
@@ -23,7 +23,7 @@ export default class TransactionType {
         return this._description
     }
 
-    get nature(): string {
+    get nature(): any {
         return this._nature
     }
 
