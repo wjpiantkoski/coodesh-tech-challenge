@@ -1,7 +1,7 @@
-import InvalidPropertyError from "../@shared/errors/invalid-property.error";
-import RequiredPropertyError from "../@shared/errors/required-property.error";
-import ValidationError from "../@shared/errors/validation.error";
-import UniqueEntityId from "../@shared/value-object/unique-entity-id";
+import InvalidPropertyError from "../../@shared/errors/invalid-property.error";
+import RequiredPropertyError from "../../@shared/errors/required-property.error";
+import ValidationError from "../../@shared/errors/validation.error";
+import UniqueEntityId from "../../@shared/value-object/unique-entity-id";
 import TransactionType from "./transaction-type";
 
 export type TransactionProps = {

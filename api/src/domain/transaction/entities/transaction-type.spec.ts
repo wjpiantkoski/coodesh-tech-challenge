@@ -1,7 +1,7 @@
-import UniqueEntityId from "../@shared/value-object/unique-entity-id";
+import UniqueEntityId from "../../@shared/value-object/unique-entity-id";
 import TransactionType, {TransactionNature, TransactionTypeNumber} from "./transaction-type";
-import RequiredPropertyError from "../@shared/errors/required-property.error";
-import InvalidPropertyError from "../@shared/errors/invalid-property.error";
+import RequiredPropertyError from "../../@shared/errors/required-property.error";
+import InvalidPropertyError from "../../@shared/errors/invalid-property.error";
 
 describe('TransactionType', () => {
 

@@ -1,6 +1,6 @@
-import UniqueEntityId from "../@shared/value-object/unique-entity-id";
-import RequiredPropertyError from "../@shared/errors/required-property.error";
-import InvalidPropertyError from "../@shared/errors/invalid-property.error";
+import UniqueEntityId from "../../@shared/value-object/unique-entity-id";
+import RequiredPropertyError from "../../@shared/errors/required-property.error";
+import InvalidPropertyError from "../../@shared/errors/invalid-property.error";
 
 export enum TransactionTypeNumber {
     TypeOne = '1',
