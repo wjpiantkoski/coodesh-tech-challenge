@@ -40,6 +40,8 @@ export default class Transaction {
     private validate(): void {
         if (!this._product) {
             throw new Error('Product is required')
+        } else if (this._product.length > 30) {
+            throw new Error('Product is invalid')
         }
     }
 
