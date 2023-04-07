@@ -1,21 +1,21 @@
 export default class FileTransaction {
 
-    private _id: string
+    private _type: string
     private _date: string
     private _product: string
     private _value: string
     private _seller: string
 
-    constructor(id: string, date: string, product: string, value: string, seller: string) {
-        this._id = id
+    constructor(type: string, date: string, product: string, value: string, seller: string) {
+        this._type = type
         this._date = date
         this._value = value
         this._seller = seller
         this._product = product
     }
 
-    get id(): string {
-        return this._id
+    get type(): string {
+        return this._type
     }
 
     get date(): string {

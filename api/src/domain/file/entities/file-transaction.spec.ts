@@ -11,7 +11,7 @@ describe('FileTransaction', function () {
             'JOSE CARLOS'
         )
 
-        expect(fileTransaction.id).toBe('1')
+        expect(fileTransaction.type).toBe('1')
         expect(fileTransaction.value).toBe('0000012750')
         expect(fileTransaction.seller).toBe('JOSE CARLOS')
         expect(fileTransaction.date).toBe('2022-01-15T19:20:30-03:00')
