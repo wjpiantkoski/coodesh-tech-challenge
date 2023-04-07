@@ -1,4 +1,8 @@
 import Transaction from "./transaction";
+import {v4 as uuid} from 'uuid'
+import InvalidPropertyError from "../@shared/errors/invalid-property.error";
+import RequiredPropertyError from "../@shared/errors/required-property.error";
+import ValidationError from "../@shared/errors/validation.error";
 
 describe('Transaction Entity', () => {
 
@@ -26,7 +30,7 @@ describe('Transaction Entity', () => {
                     value: 1000,
                     seller: 'Test Seller'
                 })
-            }).toThrowError('Product is required')
+            }).toThrowError(RequiredPropertyError)
         })
 
         it('should throw an error when product is invalid', () => {
@@ -37,7 +41,7 @@ describe('Transaction Entity', () => {
                     value: 1000,
                     seller: 'Test Seller'
                 })
-            }).toThrowError('Product is invalid')
+            }).toThrowError(InvalidPropertyError)
         })
 
         it('should throw an error when value is less than or equal zero', () => {
@@ -48,7 +52,7 @@ describe('Transaction Entity', () => {
                     value: -10,
                     seller: 'Test Seller'
                 })
-            }).toThrowError('Value must be greater than 0')
+            }).toThrowError(ValidationError)
         })
 
         it('should throw an error when seller is empty', () => {
@@ -59,7 +63,7 @@ describe('Transaction Entity', () => {
                     value: 10,
                     seller: ''
                 })
-            }).toThrowError('Seller is required')
+            }).toThrowError(RequiredPropertyError)
         })
 
         it('should throw an error when seller is invalid', () => {
@@ -70,7 +74,7 @@ describe('Transaction Entity', () => {
                     value: 10,
                     seller: 'Extremely long seller name to test'
                 })
-            }).toThrowError('Seller is invalid')
+            }).toThrowError(InvalidPropertyError)
         })
 
     });
