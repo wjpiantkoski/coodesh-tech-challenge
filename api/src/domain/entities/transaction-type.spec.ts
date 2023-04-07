@@ -1,4 +1,5 @@
 import UniqueEntityId from "../@shared/value-object/unique-entity-id";
+import TransactionType from "./transaction-type";
 
 describe('TransactionType', () => {
 
