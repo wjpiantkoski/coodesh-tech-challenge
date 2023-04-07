@@ -43,6 +43,10 @@ export default class Transaction {
         } else if (this._product.length > 30) {
             throw new Error('Product is invalid')
         }
+
+        if (this._value <= 0) {
+            throw new Error('Value must be greater than 0')
+        }
     }
 
 }
