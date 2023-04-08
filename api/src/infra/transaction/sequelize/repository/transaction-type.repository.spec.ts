@@ -89,7 +89,7 @@ describe('TransactionTypeRepository', () => {
         })
 
         const transactionTypeRepository = new TransactionTypeRepository()
-        const count = transactionTypeRepository.count()
+        const count = await transactionTypeRepository.count()
 
         expect(count).toBe(1)
     })
