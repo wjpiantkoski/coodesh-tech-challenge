@@ -78,4 +78,19 @@ describe('TransactionTypeRepository', () => {
             await transactionTypeRepository.findById('abc')
         }).rejects.toThrow(NotFoundEntityError)
     })
+
+    it('should count transaction types', async () => {
+        const transactionType = new TransactionType('1', TransactionNature.CashIn, 'Venda produtor')
+
+        await TransactionTypeModel.create({
+            id: transactionType._id,
+            nature: transactionType.nature,
+            description: transactionType.description
+        })
+
+        const transactionTypeRepository = new TransactionTypeRepository()
+        const count = transactionTypeRepository.count()
+
+        expect(count).toBe(1)
+    })
 })
