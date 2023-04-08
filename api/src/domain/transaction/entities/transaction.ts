@@ -3,6 +3,7 @@ import RequiredPropertyError from "../../@shared/errors/required-property.error"
 import ValidationError from "../../@shared/errors/validation.error";
 import UniqueEntityId from "../../@shared/value-object/unique-entity-id";
 import TransactionType from "./transaction-type";
+import {v4 as uuidv4, validate as uuidValidate} from 'uuid'
 
 export type TransactionProps = {
     date: Date,
@@ -13,15 +14,15 @@ export type TransactionProps = {
 }
 export default class Transaction {
 
-    public readonly _id: UniqueEntityId
+    public readonly _id: string
     private _date: Date
     private _product: string
     private _value: number
     private _seller: string
     private _type: TransactionType
 
-    constructor(props: TransactionProps, id?: UniqueEntityId) {
-        this._id = id || new UniqueEntityId()
+    constructor(props: TransactionProps, id?: string) {
+        this._id = id || uuidv4()
         this._date = props.date
         this._product = props.product
         this._value = props.value
@@ -52,6 +53,10 @@ export default class Transaction {
     }
 
     private validate(): void {
+        if (!uuidValidate(this._id)) {
+            throw new UniqueEntityId()
+        }
+
         if (!this._product) {
             throw new RequiredPropertyError('Product')
         } else if (this._product.length > 30) {
