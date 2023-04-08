@@ -36,4 +36,8 @@ export default class TransactionTypeRepository implements TransactionTypeReposit
             transactionTypeModel.description
         )
     }
+
+    async count(): Promise<number> {
+        return TransactionTypeModel.count()
+    }
 }
