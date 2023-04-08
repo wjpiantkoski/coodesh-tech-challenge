@@ -1,0 +1,45 @@
+version: '3'
+
+services:
+  mysql:
+    image: mysql:latest
+    restart: always
+    env_file:
+      - .env
+    environment:
+      - MYSQL_DATABASE=$MYSQL_DATABASE
+      - MYSQL_USER=$MYSQL_USER
+      - MYSQL_PASSWORD=$MYSQL_PASSWORD
+      - MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD
+    ports:
+      - '3306:3306'
+    volumes:
+      - ./database/prod:/var/lib/mysql
+    networks:
+      - coodesh-app
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: coodesh-api
+    container_name: coodesh-api
+    restart: unless-stopped
+    depends_on:
+      - mysql
+    env_file: .env
+    environment:
+      - SERVER_PORT=$SERVER_PORT
+      - MYSQL_DATABASE=$MYSQL_DATABASE
+      - MYSQL_USER=$MYSQL_USER
+      - MYSQL_PASSWORD=$MYSQL_PASSWORD
+      - MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD
+      - MYSQL_HOST=mysql
+    ports:
+      - '3000:3000'
+    networks:
+      - coodesh-app
+
+networks:
+  coodesh-app:
+    driver: bridge
