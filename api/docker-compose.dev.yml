@@ -14,17 +14,15 @@ services:
     ports:
       - '3306:3306'
     volumes:
-      - ./database/prod:/var/lib/mysql
+      - ./database/dev:/var/lib/mysql
     networks:
-      - coodesh-app
+      - coodesh-app-dev
 
   api:
     build:
       context: .
-      dockerfile: Dockerfile
-    image: coodesh-api:prod
-    container_name: coodesh-api
-    restart: unless-stopped
+      dockerfile: Dockerfile.dev
+    image: coodesh-api:dev
     depends_on:
       - mysql
     env_file: .env
@@ -35,11 +33,13 @@ services:
       - MYSQL_PASSWORD=$MYSQL_PASSWORD
       - MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD
       - MYSQL_HOST=mysql
+    volumes:
+      - .:/app
     ports:
       - '3000:3000'
     networks:
-      - coodesh-app
+      - coodesh-app-dev
 
 networks:
-  coodesh-app:
+  coodesh-app-dev:
     driver: bridge
