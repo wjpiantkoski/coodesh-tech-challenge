@@ -7,10 +7,14 @@ services:
     env_file:
       - .env
     environment:
-      - MYSQL_DATABASE=$MYSQL_DATABASE
-      - MYSQL_USER=$MYSQL_USER
-      - MYSQL_PASSWORD=$MYSQL_PASSWORD
-      - MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD
+        MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
+        MYSQL_DATABASE: $MYSQL_DATABASE
+        MYSQL_USER: $MYSQL_USER
+        MYSQL_PASSWORD: $MYSQL_PASSWORD
+    healthcheck:
+      test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
+      timeout: 10s
+      retries: 10
     ports:
       - '3306:3306'
     volumes:
@@ -23,20 +27,22 @@ services:
       context: .
       dockerfile: Dockerfile.dev
     image: coodesh-api:dev
-    depends_on:
-      - mysql
+    tty: true
     env_file: .env
     environment:
-      - SERVER_PORT=$SERVER_PORT
-      - MYSQL_DATABASE=$MYSQL_DATABASE
-      - MYSQL_USER=$MYSQL_USER
-      - MYSQL_PASSWORD=$MYSQL_PASSWORD
-      - MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD
-      - MYSQL_HOST=mysql
+      SERVER_PORT: $SERVER_PORT
+      MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
+      MYSQL_DATABASE: $MYSQL_DATABASE
+      MYSQL_USER: $MYSQL_USER
+      MYSQL_PASSWORD: $MYSQL_PASSWORD
+      MYSQL_HOST: mysql
     volumes:
       - .:/app
     ports:
       - '3000:3000'
+    depends_on:
+      mysql:
+        condition: service_healthy
     networks:
       - coodesh-app-dev
 

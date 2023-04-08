@@ -1,9 +1,36 @@
 version: '3'
 
 services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: coodesh-api:prod
+    container_name: coodesh-api
+    restart: unless-stopped
+    depends_on:
+      mysql:
+        condition: service_healthy
+    env_file: .env
+    environment:
+      - SERVER_PORT=$SERVER_PORT
+      - MYSQL_DATABASE=$MYSQL_DATABASE
+      - MYSQL_USER=$MYSQL_USER
+      - MYSQL_PASSWORD=$MYSQL_PASSWORD
+      - MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD
+      - MYSQL_HOST=mysql
+    ports:
+      - '3000:3000'
+    networks:
+      - coodesh-app
+
   mysql:
     image: mysql:latest
     restart: always
+    healthcheck:
+      test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
+      timeout: 10s
+      retries: 10
     env_file:
       - .env
     environment:
@@ -18,27 +45,7 @@ services:
     networks:
       - coodesh-app
 
-  api:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    image: coodesh-api:prod
-    container_name: coodesh-api
-    restart: unless-stopped
-    depends_on:
-      - mysql
-    env_file: .env
-    environment:
-      - SERVER_PORT=$SERVER_PORT
-      - MYSQL_DATABASE=$MYSQL_DATABASE
-      - MYSQL_USER=$MYSQL_USER
-      - MYSQL_PASSWORD=$MYSQL_PASSWORD
-      - MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD
-      - MYSQL_HOST=mysql
-    ports:
-      - '3000:3000'
-    networks:
-      - coodesh-app
+
 
 networks:
   coodesh-app:
