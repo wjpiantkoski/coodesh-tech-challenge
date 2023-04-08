@@ -1,9 +1,9 @@
 import InvalidPropertyError from "../../@shared/errors/invalid-property.error";
 import RequiredPropertyError from "../../@shared/errors/required-property.error";
 import ValidationError from "../../@shared/errors/validation.error";
-import UniqueEntityId from "../../@shared/value-object/unique-entity-id";
 import TransactionType from "./transaction-type";
 import {v4 as uuidv4, validate as uuidValidate} from 'uuid'
+import InvalidUuidError from "../../@shared/errors/invalid-uuid.error";
 
 export type TransactionProps = {
     date: Date,
@@ -54,7 +54,7 @@ export default class Transaction {
 
     private validate(): void {
         if (!uuidValidate(this._id)) {
-            throw new UniqueEntityId()
+            throw new InvalidUuidError()
         }
 
         if (!this._product) {
