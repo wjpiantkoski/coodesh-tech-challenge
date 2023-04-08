@@ -62,7 +62,7 @@ describe('TransactionRepository', () => {
             foundTransactionTwo
         ] = await Promise.all([
             TransactionModel.findOne({
-                where: { id: transactionOne._id.id },
+                where: { id: transactionOne._id },
                 include: [
                     {
                         model: TransactionTypeModel,
@@ -71,7 +71,7 @@ describe('TransactionRepository', () => {
                 ]
             }),
             TransactionModel.findOne({
-                where: { id: transactionTwo._id.id },
+                where: { id: transactionTwo._id },
                 include: [
                     {
                         model: TransactionTypeModel,
@@ -82,7 +82,7 @@ describe('TransactionRepository', () => {
         ])
 
         expect(foundTransactionOne.toJSON()).toStrictEqual({
-            id: transactionOne._id.id,
+            id: transactionOne._id,
             date: transactionOne.date,
             product: transactionOne.product,
             seller: transactionOne.seller,
@@ -96,7 +96,7 @@ describe('TransactionRepository', () => {
         })
 
         expect(foundTransactionTwo.toJSON()).toStrictEqual({
-            id: transactionTwo._id.id,
+            id: transactionTwo._id,
             date: transactionTwo.date,
             product: transactionTwo.product,
             seller: transactionTwo.seller,

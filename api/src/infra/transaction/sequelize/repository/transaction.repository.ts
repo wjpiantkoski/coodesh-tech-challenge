@@ -3,14 +3,13 @@ import TransactionRepositoryInterface
 import Transaction from "../../../../domain/transaction/entities/transaction";
 import TransactionModel from "../models/transaction.model";
 import TransactionType, {TransactionNature} from "../../../../domain/transaction/entities/transaction-type";
-import UniqueEntityId from "../../../../domain/@shared/value-object/unique-entity-id";
 import TransactionTypeModel from "../models/transaction-type.model";
 
 export default class TransactionRepository implements TransactionRepositoryInterface {
     async createMany(entities: Transaction[]): Promise<void> {
         await TransactionModel.bulkCreate(entities.map(entity => {
             return {
-                id: entity._id.id,
+                id: entity._id,
                 product: entity.product,
                 seller: entity.seller,
                 value: entity.value,
@@ -44,7 +43,7 @@ export default class TransactionRepository implements TransactionRepositoryInter
                     TransactionNature[transactionNature],
                     item.type.description
                 )
-            }, new UniqueEntityId(item.id))
+            }, item.id)
         })
 
         return transactions
