@@ -1,0 +1,7 @@
+.coodesh-container {
+    min-height: 100vh;
+    max-width: 480px;
+    padding: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
