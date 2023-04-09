@@ -12,5 +12,5 @@ export default async (token: string, path: string, method?: string, body?: any, 
 
     const response = await apiClient(path, options)
 
-    return response.datae
+    return response.data
 }
