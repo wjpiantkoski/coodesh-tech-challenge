@@ -84,14 +84,12 @@ export default {
         <v-text-field
             outlined
             label="Senha"
-            type="password"
             v-model="password"
             :error-messages="passwordErrors"
+            :type="showPassword ? 'text' : 'password'"
+            @click:append="showPassword = !showPassword"
+            :append-icon="showPassword ? 'mdi-eye-off-outline' : 'mdi-eye-outline'"
         ></v-text-field>
-
-        <div>
-          <a href="">Esqueci minha senha</a>
-        </div>
       </v-card-text>
 
       <v-card-actions>
