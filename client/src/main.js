@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import Vuelidate from 'vuelidate'
 import {getAuth} from 'firebase/auth'
 import {initializeApp} from 'firebase/app'
 
@@ -14,9 +15,9 @@ import 'roboto-fontface/css/roboto/roboto-fontface.css'
 
 Vue.config.productionTip = false
 
-let app
+Vue.use(Vuelidate)
 
-console.log(firebaseConfig)
+let app
 
 const firebaseApp = initializeApp(firebaseConfig)
 const auth = getAuth(firebaseApp)
