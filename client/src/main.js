@@ -16,6 +16,8 @@ Vue.config.productionTip = false
 
 let app
 
+console.log(firebaseConfig)
+
 const firebaseApp = initializeApp(firebaseConfig)
 const auth = getAuth(firebaseApp)
 
