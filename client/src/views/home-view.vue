@@ -1,7 +1,14 @@
 <script>
+import NavigationBar from "@/components/home/navigation-bar.vue";
+
 export default {
-  name: 'HomeView'
+  name: 'HomeView',
+  components: {NavigationBar}
 }
 </script>
 
-<template></template>
+<template>
+  <v-main>
+    <navigation-bar/>
+  </v-main>
+</template>
