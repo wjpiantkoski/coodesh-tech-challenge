@@ -7,6 +7,7 @@ import App from './App.vue'
 
 import router from './router'
 import vuetify from './plugins/vuetify'
+import eventBus from './plugins/eventBus'
 import firebaseConfig from './plugins/firebaseConfig'
 
 import '@babel/polyfill'
@@ -15,6 +16,7 @@ import 'roboto-fontface/css/roboto/roboto-fontface.css'
 
 Vue.config.productionTip = false
 
+Vue.use(eventBus)
 Vue.use(Vuelidate)
 
 let app
