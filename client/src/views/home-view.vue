@@ -1,7 +1,7 @@
-<script setup lang="ts"></script>
+<script>
+export default {
+  name: 'HomeView'
+}
+</script>
 
-<template>
-  <v-container>
-    home
-  </v-container>
-</template>
+<template></template>

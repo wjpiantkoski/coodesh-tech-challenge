@@ -1,18 +1,22 @@
 <script>
-import {defineComponent} from "vue";
-import FormLogin from "../components/form-login.vue";
+import FormLogin from "@/components/login/form-login.vue";
 
-export default defineComponent({
+export default {
+  name: 'LoginView',
   components: {FormLogin}
-})
+}
 </script>
 
 <template>
-  <div class="coodesh-container d-flex align-center justify-center">
-    <v-row>
-      <v-col class="col-12">
-        <form-login/>
-      </v-col>
-    </v-row>
-  </div>
+  <v-main>
+    <v-container fluid class="fill-height align-center justify-center">
+      <FormLogin/>
+    </v-container>
+  </v-main>
 </template>
+
+<style scoped>
+.container {
+  max-width: 480px !important;
+}
+</style>

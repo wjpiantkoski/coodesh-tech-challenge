@@ -1,10 +1,9 @@
-<script setup lang="ts">
-</script>
-
 <template>
-  <router-view></router-view>
+  <v-app>
+    <router-view></router-view>
+  </v-app>
 </template>
 
-<style scoped>
+<style>
 
 </style>
