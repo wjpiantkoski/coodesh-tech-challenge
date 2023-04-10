@@ -1,10 +1,11 @@
 <script>
 import NavigationBar from "@/components/home/navigation-bar.vue";
 import UploadButton from "@/components/home/upload-button.vue";
+import FormFileUpload from "@/components/home/form-file-upload.vue";
 
 export default {
   name: 'HomeView',
-  components: {UploadButton, NavigationBar}
+  components: {FormFileUpload, UploadButton, NavigationBar}
 }
 </script>
 
@@ -20,5 +21,7 @@ export default {
         </v-flex>
       </v-layout>
     </v-container>
+
+    <form-file-upload/>
   </v-main>
 </template>
