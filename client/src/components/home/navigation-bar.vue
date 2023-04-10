@@ -20,7 +20,9 @@ export default {
   <v-app-bar
       dark
       dense
+      fixed
       color="blue"
+      class="mt-6"
   >
     <v-toolbar-title>Coodesh Challenge</v-toolbar-title>
 

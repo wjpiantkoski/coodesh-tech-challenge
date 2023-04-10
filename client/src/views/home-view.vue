@@ -52,7 +52,7 @@ export default {
 
     <v-container grid-list-md>
       <v-layout row wrap>
-        <v-flex xs12 class="text-right pt-10 mb-10">
+        <v-flex xs12 class="text-right pt-10 mb-10 mt-15">
           <transactions-total :total="transactionsList.total"/>
           <v-divider></v-divider>
         </v-flex>

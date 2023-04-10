@@ -14,7 +14,7 @@ export default {
     fab
     right
     bottom
-    absolute
+    fixed
     color="primary"
     class="mb-16 mr-5"
     @click="showUploadForm"

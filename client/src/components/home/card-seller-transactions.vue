@@ -35,7 +35,7 @@ export default {
   }),
   computed: {
     total() {
-      return numberToCurrency(this.sellerData.total)
+      return numberToCurrency(this.sellerData.total / 100)
     }
   },
   methods: {
