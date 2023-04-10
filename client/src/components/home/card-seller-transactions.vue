@@ -1,6 +1,7 @@
 <script>
 import numberToCurrency from "@/utils/numberToCurrency";
 import dayjs from "@/utils/dayjs";
+import stringCapitalize from "@/utils/stringCapitalize";
 
 export default {
   name: 'CardSellerTransactions',
@@ -53,6 +54,13 @@ export default {
       }
 
       return ''
+    },
+    formatName(name) {
+      if (name) {
+        return stringCapitalize(name)
+      }
+
+      return ''
     }
   }
 }
@@ -62,7 +70,7 @@ export default {
   <v-card>
     <v-card-title class="d-flex align-center justify-space-between">
       <div>
-        {{ sellerData.seller }}
+        {{ formatName(sellerData.seller) }}
       </div>
 
       <div class="d-flex flex-column text-right">
