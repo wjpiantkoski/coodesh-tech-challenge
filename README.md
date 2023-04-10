@@ -1,6 +1,10 @@
 # Coodesh Affiliates Challenge
 Upload and manage digital product sales.
 
+
+>  This is a challenge by [Coodesh](https://coodesh.com/)
+
+
 ## Project folders structure
 - `api`: backend code
 - `client`: frontend code
