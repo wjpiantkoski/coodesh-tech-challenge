@@ -17,6 +17,8 @@ Upload and manage digital product sales.
 - Jest
 - sqlite3 (used in tests)
 - MySQL
+- 
+### [API Docs](https://documenter.getpostman.com/view/2943788/2s93XsZn7c)
 
 ### How to run
 #### Dev mode
