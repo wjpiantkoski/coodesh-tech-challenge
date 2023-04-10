@@ -1,4 +1,4 @@
-import {apiClient} from './apiClient'
+import {apiClient} from './apiClient.js'
 
 export default async (token: string, path: string, method?: string, body?: any, params?: any): Promise<any> => {
     const options = {
@@ -12,5 +12,5 @@ export default async (token: string, path: string, method?: string, body?: any, 
 
     const response = await apiClient(path, options)
 
-    return response.data
+    return response
 }
