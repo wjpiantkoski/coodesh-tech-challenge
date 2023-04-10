@@ -1,0 +1,7 @@
+export const API_URL="http://localhost:3000"
+export const FIREBASE_API_KEY="AIzaSyB7vZC04zRFtD_fGWAiYcCa0McGKbDKBA0"
+export const FIREBASE_AUTH_DOMAIN="coodesh-challenge-aa4ed.firebaseapp.com"
+export const FIREBASE_PROJECT_ID="coodesh-challenge-aa4ed"
+export const FIREBASE_STORAGE_BUCKET="coodesh-challenge-aa4ed.appspot.com"
+export const FIREBASE_MESSAGING_SENDER_ID="1028759187379"
+export const FIREBASE_APP_ID="1:1028759187379:web:f2ceed94a399cbaba1e5c6"

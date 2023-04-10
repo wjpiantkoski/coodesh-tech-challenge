@@ -5,4 +5,7 @@ dist/
 yarn.lock
 coverage/
 node_modules/
-package-lock.json
+api/package-lock.json
+uploads/
+database/
+client/src/env.js
